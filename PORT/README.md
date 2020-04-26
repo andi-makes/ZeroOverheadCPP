@@ -11,7 +11,9 @@
 ## Hey! For this `ZOL`, there is still work to do!
 
  - [X] Writing the `C` Baseline program
- - [ ] Describing the function of said `C` Baseline program
- - [ ] Writing the `Arduino` equivalent of the `C` program
+ - [X] Wiki entry of `C` Baseline program
+ - [X] Writing the `Arduino` equivalent of the `C` program
+ - [ ] Wiki entry of `Arduino` program
  - [ ] Writing the `ZOL` in `C++`
+ - [ ] Wiki entry of `ZOl`
  - [ ] Documenting in the Wiki 
