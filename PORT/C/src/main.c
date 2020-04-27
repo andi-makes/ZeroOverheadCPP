@@ -25,8 +25,13 @@ int main() {
 	
 	// The main loop of the Program, imagine it as the `void loop()` of an Arduino Program
 	while(1) {
-		// Here we are setting PB5 LOW if it was HIGH and the other way around.
-		PORTB ^= (1<<5);
+		// Here we are setting PB5 LOW if it was HIGH and the other way around. This is also called toggeling a pin.
+		// PORTB ^= (1<<5);
+		
+		// After reading the Datasheet in preperation for the ZOL version of this program, I discovered that toggling 
+		// a pin can be achieved by writing a 1 to the corresponding bit in the PINx register.
+		PINB |= (1<<5); 
+
 		// Waiting 500ms, imagine it as the `delay()` function of an Arduino Program.
 		_delay_ms(500);
 	}
