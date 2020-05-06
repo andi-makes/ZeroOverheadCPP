@@ -1,0 +1,19 @@
+
+C:/Users/andre/OneDrive/Dokumente/ZeroOverheadCPP/build/../bin/digitalPin.elf:     file format elf32-avr
+
+
+Disassembly of section .text:
+
+00000000 <main>:
+   0:	25 9a       	sbi	0x04, 5	; 4
+   2:	1d 9a       	sbi	0x03, 5	; 3
+   4:	2f ef       	ldi	r18, 0xFF	; 255
+   6:	89 e6       	ldi	r24, 0x69	; 105
+   8:	98 e1       	ldi	r25, 0x18	; 24
+   a:	21 50       	subi	r18, 0x01	; 1
+   c:	80 40       	sbci	r24, 0x00	; 0
+   e:	90 40       	sbci	r25, 0x00	; 0
+  10:	e1 f7       	brne	.-8      	; 0xa <__zero_reg__+0x9>
+  12:	00 c0       	rjmp	.+0      	; 0x14 <__zero_reg__+0x13>
+  14:	00 00       	nop
+  16:	f5 cf       	rjmp	.-22     	; 0x2 <__zero_reg__+0x1>

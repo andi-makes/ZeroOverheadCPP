@@ -1,3 +1,6 @@
 .vscode
 .pio
+build
+bin/*.elf
+bin/*.hex
 */*/.gitignore
