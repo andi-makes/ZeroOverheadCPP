@@ -1,4 +1,5 @@
 .vscode
+.idea
 .pio
 build
 bin/*.elf
