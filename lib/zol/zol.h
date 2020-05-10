@@ -10,5 +10,6 @@ extern "C" {
 
 void setup();
 void loop();
+int main();
 
 } // END extern "C"

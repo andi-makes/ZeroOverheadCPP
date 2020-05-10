@@ -1,5 +1,5 @@
 
-C:/Users/andre/OneDrive/Dokumente/ZeroOverheadCPP/build/../bin/timer.elf:     file format elf32-avr
+C:/Users/andre/OneDrive/Dokumente/ZeroOverheadCPP/build/../bin/zol.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
@@ -111,14 +111,14 @@ Disassembly of section .text:
   d0:	f3 cf       	rjmp	.-26     	; 0xb8 <__vector_14+0x28>
 
 000000d2 <main>:
-  d2:	82 e0       	ldi	r24, 0x02	; 2
-  d4:	84 bd       	out	0x24, r24	; 36
-  d6:	93 e0       	ldi	r25, 0x03	; 3
-  d8:	95 bd       	out	0x25, r25	; 37
-  da:	99 ef       	ldi	r25, 0xF9	; 249
-  dc:	97 bd       	out	0x27, r25	; 39
-  de:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7e006e>
-  e2:	25 9a       	sbi	0x04, 5	; 4
+  d2:	25 9a       	sbi	0x04, 5	; 4
+  d4:	82 e0       	ldi	r24, 0x02	; 2
+  d6:	84 bd       	out	0x24, r24	; 36
+  d8:	93 e0       	ldi	r25, 0x03	; 3
+  da:	95 bd       	out	0x25, r25	; 37
+  dc:	99 ef       	ldi	r25, 0xF9	; 249
+  de:	97 bd       	out	0x27, r25	; 39
+  e0:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7e006e>
   e4:	78 94       	sei
   e6:	ff cf       	rjmp	.-2      	; 0xe6 <main+0x14>
 

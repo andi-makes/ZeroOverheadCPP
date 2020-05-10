@@ -6,17 +6,56 @@ set(CMAKE_CROSSCOMPILING 1)
 
 set(CMAKE_C_COMPILER avr-gcc)
 set(CMAKE_CXX_COMPILER avr-g++)
+
+set(CMAKE_AR avr-gcc-ar)
+set(CMAKE_RANLIB avr-gcc-ranlib)
+
+SET(CMAKE_C_ARCHIVE_CREATE "<CMAKE_AR> rc <TARGET> <LINK_FLAGS> <OBJECTS>")
+SET(CMAKE_C_ARCHIVE_FINISH true)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
 
 project(cmake_drives_me_crazy)
-add_definitions(
+
+set(
+	MCU_FLAGS
 	"-mmcu=atmega328p"
 	"-DF_CPU=16000000UL"
-	"-O1 -g -flto"
-	"-std=c++17"
-	"-fno-exceptions -fno-threadsafe-statics -fpermissive"
-	"-Wall -Wextra -ffunction-sections -fdata-sections"
-#    "-Werror"
+)
+
+set(
+	LTO_FLAGS
+	"-flto"
+	"-fuse-linker-plugin"
+)
+
+set(
+	WARNING_ERROR_FLAGS
+	"-Wall"
+	"-Wextra"
+	"-Werror"
+)
+
+set(
+	FLAGS
+	"-fno-exceptions"
+	"-ffunction-sections"
+	"-fdata-sections"
+)
+
+set(OPTIMIZATION "-Os")
+
+add_definitions(
+	${MCU_FLAGS}
+	${OPTIMIZATION}
+	${LTO_FLAGS}
+	${WARNING_ERROR_FLAGS}
+	${FLAGS}
+)
+
+set(
+	CMAKE_CXX_FLAGS
+	"-std=c++17 -fno-threadsafe-statics -fpermissive"
 )
 
 add_link_options(
@@ -45,16 +84,16 @@ function(add_avr_executable EXECUTABLE_NAME)
 	add_custom_command(
 		OUTPUT ${EXECUTABLE_NAME}.hex
 		COMMAND
-			avr-objcopy -j .text -j .data -O ihex ${BIN_FOLDER}.elf ${BIN_FOLDER}.hex
+		avr-objcopy -j .text -j .data -O ihex ${BIN_FOLDER}.elf ${BIN_FOLDER}.hex
 		COMMAND
-			avr-size -t -d ${BIN_FOLDER}.elf
-		DEPENDS ${EXECUTABLE_NAME}.elf	
+		avr-size -t -d ${BIN_FOLDER}.elf
+		DEPENDS ${EXECUTABLE_NAME}.elf
 	)
 
 	add_custom_command(
 		OUTPUT ${EXECUTABLE_NAME}.lss
 		COMMAND
-			avr-objdump -h -d ${BIN_FOLDER}.elf > ${BIN_FOLDER}.lss
+		avr-objdump -h -d ${BIN_FOLDER}.elf > ${BIN_FOLDER}.lss
 		DEPENDS ${EXECUTABLE_NAME}.elf
 	)
 
@@ -74,7 +113,7 @@ function(add_avr_executable EXECUTABLE_NAME)
 	get_directory_property(clean_files ADDITIONAL_MAKE_CLEAN_FILES)
 	set_directory_properties(
 		PROPERTIES
-			ADDITIONAL_MAKE_CLEAN_FILES "${clean_files};${BIN_FOLDER}.map;${BIN_FOLDER}.hex;${BIN_FOLDER}.lss"
+		ADDITIONAL_MAKE_CLEAN_FILES "${clean_files};${BIN_FOLDER}.map;${BIN_FOLDER}.hex;${BIN_FOLDER}.lss"
 	)
 endfunction(add_avr_executable)
 

@@ -1,6 +1,6 @@
 #include <util/delay.h>
 
-#include <zol.h>
+#include "zol/zol.h"
 
 ISR(TIMER0_COMPA_vect) {
 	static int i = 0;
@@ -13,7 +13,7 @@ ISR(TIMER0_COMPA_vect) {
 
 void setup() {
 	digitalPin13.output();
-	ctc_timer0.ctc_1ms();
+	ctc_timer0.setup(3, 249);
 }
 
 void loop() {

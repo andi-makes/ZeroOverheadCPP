@@ -41,7 +41,7 @@ Disassembly of section .text:
   2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
-  38:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__vector_14>
+  38:	0c 94 48 00 	jmp	0x90	; 0x90 <__vector_14>
   3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
@@ -75,58 +75,56 @@ Disassembly of section .text:
   7e:	a2 30       	cpi	r26, 0x02	; 2
   80:	b2 07       	cpc	r27, r18
   82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
-  84:	0e 94 48 00 	call	0x90	; 0x90 <main>
+  84:	0e 94 69 00 	call	0xd2	; 0xd2 <main>
   88:	0c 94 79 00 	jmp	0xf2	; 0xf2 <_exit>
 
 0000008c <__bad_interrupt>:
   8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-00000090 <main>:
-  90:	84 b5       	in	r24, 0x24	; 36
-  92:	82 60       	ori	r24, 0x02	; 2
-  94:	84 bd       	out	0x24, r24	; 36
-  96:	85 b5       	in	r24, 0x25	; 37
-  98:	83 60       	ori	r24, 0x03	; 3
-  9a:	85 bd       	out	0x25, r24	; 37
-  9c:	89 ef       	ldi	r24, 0xF9	; 249
-  9e:	87 bd       	out	0x27, r24	; 39
-  a0:	ee e6       	ldi	r30, 0x6E	; 110
-  a2:	f0 e0       	ldi	r31, 0x00	; 0
-  a4:	80 81       	ld	r24, Z
-  a6:	82 60       	ori	r24, 0x02	; 2
-  a8:	80 83       	st	Z, r24
-  aa:	25 9a       	sbi	0x04, 5	; 4
-  ac:	78 94       	sei
-  ae:	ff cf       	rjmp	.-2      	; 0xae <main+0x1e>
+00000090 <__vector_14>:
+  90:	1f 92       	push	r1
+  92:	1f b6       	in	r1, 0x3f	; 63
+  94:	1f 92       	push	r1
+  96:	11 24       	eor	r1, r1
+  98:	2f 93       	push	r18
+  9a:	8f 93       	push	r24
+  9c:	9f 93       	push	r25
+  9e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+  a2:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+  a6:	01 96       	adiw	r24, 0x01	; 1
+  a8:	84 3f       	cpi	r24, 0xF4	; 244
+  aa:	21 e0       	ldi	r18, 0x01	; 1
+  ac:	92 07       	cpc	r25, r18
+  ae:	5c f4       	brge	.+22     	; 0xc6 <__vector_14+0x36>
+  b0:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+  b4:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+  b8:	9f 91       	pop	r25
+  ba:	8f 91       	pop	r24
+  bc:	2f 91       	pop	r18
+  be:	1f 90       	pop	r1
+  c0:	1f be       	out	0x3f, r1	; 63
+  c2:	1f 90       	pop	r1
+  c4:	18 95       	reti
+  c6:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
+  ca:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+  ce:	1d 9a       	sbi	0x03, 5	; 3
+  d0:	f3 cf       	rjmp	.-26     	; 0xb8 <__vector_14+0x28>
 
-000000b0 <__vector_14>:
-  b0:	1f 92       	push	r1
-  b2:	1f b6       	in	r1, 0x3f	; 63
-  b4:	1f 92       	push	r1
-  b6:	11 24       	eor	r1, r1
-  b8:	2f 93       	push	r18
-  ba:	8f 93       	push	r24
-  bc:	9f 93       	push	r25
-  be:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
-  c2:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
-  c6:	01 96       	adiw	r24, 0x01	; 1
-  c8:	84 3f       	cpi	r24, 0xF4	; 244
-  ca:	21 e0       	ldi	r18, 0x01	; 1
-  cc:	92 07       	cpc	r25, r18
-  ce:	2c f4       	brge	.+10     	; 0xda <__vector_14+0x2a>
-  d0:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
-  d4:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-  d8:	05 c0       	rjmp	.+10     	; 0xe4 <__vector_14+0x34>
-  da:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
-  de:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
-  e2:	1d 9a       	sbi	0x03, 5	; 3
-  e4:	9f 91       	pop	r25
-  e6:	8f 91       	pop	r24
-  e8:	2f 91       	pop	r18
-  ea:	1f 90       	pop	r1
-  ec:	1f be       	out	0x3f, r1	; 63
-  ee:	1f 90       	pop	r1
-  f0:	18 95       	reti
+000000d2 <main>:
+  d2:	84 b5       	in	r24, 0x24	; 36
+  d4:	82 60       	ori	r24, 0x02	; 2
+  d6:	84 bd       	out	0x24, r24	; 36
+  d8:	85 b5       	in	r24, 0x25	; 37
+  da:	83 60       	ori	r24, 0x03	; 3
+  dc:	85 bd       	out	0x25, r24	; 37
+  de:	89 ef       	ldi	r24, 0xF9	; 249
+  e0:	87 bd       	out	0x27, r24	; 39
+  e2:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <__TEXT_REGION_LENGTH__+0x7e006e>
+  e6:	82 60       	ori	r24, 0x02	; 2
+  e8:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7e006e>
+  ec:	25 9a       	sbi	0x04, 5	; 4
+  ee:	78 94       	sei
+  f0:	ff cf       	rjmp	.-2      	; 0xf0 <main+0x1e>
 
 000000f2 <_exit>:
   f2:	f8 94       	cli

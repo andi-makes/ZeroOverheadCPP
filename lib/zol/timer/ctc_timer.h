@@ -10,23 +10,23 @@ class CTC_Timer {
 	volatile uint8_t &TIMSK;
 
 public:
-	void setup(int prescaler, int ocra) {
+	void setup(const int prescaler, const int ocra) {
 		if constexpr (number==1) {
-			TCCRA &= ~(0b11 << WGM10);
-			TCCRB |= (1 << WGM12) | (prescaler << CS10);
+			TCCRA = 0;
+			TCCRB = (1 << WGM12) | (prescaler << CS10);
 		} else {
-			TCCRA |= (2 << WGM00);
-			TCCRB |= (prescaler << CS00);
+			TCCRA = (2 << WGM00);
+			TCCRB = (prescaler << CS00);
 		}
 		OCRA = ocra;
 		enable_interrupt();
 	}
 
 	void enable_interrupt() {
-		TIMSK |= (1 << OCIE0A);
+		TIMSK = (1 << OCIE0A);
 	}
 	void disable_interrupt() {
-		TIMSK &= ~(1 << OCIE0A);
+		TIMSK = 0;
 	}
 
 	CTC_Timer()
@@ -47,3 +47,5 @@ public:
 #define ctc_timer2 CTC_Timer<uint8_t, 2>{}
 
 #define ctc_timer0_isr TIMER0_COMPA_vect
+#define ctc_timer1_isr TIMER1_COMPA_vect
+#define ctc_timer2_isr TIMER2_COMPA_vect

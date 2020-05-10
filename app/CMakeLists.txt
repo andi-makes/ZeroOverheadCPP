@@ -15,3 +15,13 @@ add_avr_executable(
         c_timer
         timer/main.c
 )
+
+add_avr_executable(
+        zol
+        zol/main.cpp
+)
+
+target_link_libraries(
+        zol.elf
+        zol_lib
+)
