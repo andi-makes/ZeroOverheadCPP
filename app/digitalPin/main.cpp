@@ -1,5 +1,5 @@
 #include <util/delay.h>
-#include "zol/zol.hpp"
+#include "zol/zol.h"
 
 int main() {
 	digitalPin13.output();

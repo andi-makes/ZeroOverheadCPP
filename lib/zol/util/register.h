@@ -15,21 +15,21 @@ public:
 		reg ^= (1 << bit_number);
 	}
 
-	// inline set_reg(const type content) {
-	// 	reg = content;
-	// }
-	// inline clear_reg() {
-	// 	reg = 0;
-	// }
-	// inline or_reg(const type content) {
-	// 	reg |= content;
-	// }
-	// inline and_reg(const type content) {
-	// 	reg &= content;
-	// }
-	// inline toggle_reg(const type content) {
-	// 	reg ^= content;
-	// }
+	inline void set_reg(const type content) {
+		reg = content;
+	}
+	inline void clear_reg() {
+		reg = 0;
+	}
+	inline void or_reg(const type content) {
+		reg |= content;
+	}
+	inline void and_reg(const type content) {
+		reg &= content;
+	}
+	inline void toggle_reg(const type content) {
+		reg ^= content;
+	}
 
 	Register(volatile type& address) : 
 		reg{*(volatile type *)(&address)} { }
