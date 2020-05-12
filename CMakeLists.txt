@@ -15,7 +15,7 @@ SET(CMAKE_C_ARCHIVE_FINISH true)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
 
-project(cmake_drives_me_crazy)
+project(zol)
 
 set(
 	MCU_FLAGS

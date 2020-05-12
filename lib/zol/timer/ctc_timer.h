@@ -7,6 +7,7 @@ class CTC_Timer {
 	volatile uint8_t &TCCRA;
 	volatile uint8_t &TCCRB;
 	volatile type_t &OCRA;
+	volatile type_t &TCNT;
 	volatile uint8_t &TIMSK;
 
 public:
@@ -37,14 +38,35 @@ public:
 		  OCRA{*(volatile type_t *)(number==0
 									? &OCR0A
 									: number==1 ? &OCR1AL : &OCR2A)},
-		  TIMSK{*(volatile type_t *)(number==0
-									 ? &TIMSK0
-									 : number==1 ? &TIMSK1 : &TIMSK2)} { }
+		  TCNT{*(volatile type_t *)(number==0
+									? &TCNT0
+									: number==1 ? &TCNT1L : &TCNT2)},
+		  TIMSK{*(volatile uint8_t *)(number==0
+									  ? &TIMSK0
+									  : number==1 ? &TIMSK1 : &TIMSK2)} { }
 };
 
 #define ctc_timer0 CTC_Timer<uint8_t, 0>{}
 #define ctc_timer1 CTC_Timer<uint16_t, 1>{}
 #define ctc_timer2 CTC_Timer<uint8_t, 2>{}
+
+#define ctc_timer0_100us    ctc_timer0.setup(3, 24)
+#define ctc_timer0_500us    ctc_timer0.setup(3, 124)
+#define ctc_timer0_1ms    	ctc_timer0.setup(3, 249)
+#define ctc_timer0_2ms      ctc_timer0.setup(4, 124)
+#define ctc_timer0_4ms      ctc_timer0.setup(4, 249)
+
+#define ctc_timer1_100us    ctc_timer1.setup(3, 24)
+#define ctc_timer1_500us    ctc_timer1.setup(3, 124)
+#define ctc_timer1_1ms    	ctc_timer1.setup(3, 249)
+#define ctc_timer1_2ms      ctc_timer1.setup(4, 124)
+#define ctc_timer1_4ms      ctc_timer1.setup(4, 249)
+
+#define ctc_timer2_100us    ctc_timer2.setup(3, 24)
+#define ctc_timer2_500us    ctc_timer2.setup(3, 124)
+#define ctc_timer2_1ms    	ctc_timer2.setup(3, 249)
+#define ctc_timer2_2ms      ctc_timer2.setup(4, 124)
+#define ctc_timer2_4ms      ctc_timer2.setup(4, 249)
 
 #define ctc_timer0_isr TIMER0_COMPA_vect
 #define ctc_timer1_isr TIMER1_COMPA_vect

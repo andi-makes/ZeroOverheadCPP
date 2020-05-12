@@ -12,4 +12,26 @@ void setup();
 void loop();
 int main();
 
-} // END extern "C"
+}
+
+// region implementation
+
+#ifdef ZOL_USE_TIMER0_LOOP
+#define ZOL_USE_TIMER_LOOP
+ISR(ctc_timer0_isr) {
+	loop();
+}
+#endif
+
+int main() {
+	setup();
+	sei();
+
+	while (true) {
+#ifndef ZOL_USE_TIMER_LOOP
+		loop();
+#endif
+	}
+}
+
+// endregion

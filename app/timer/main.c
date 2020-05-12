@@ -11,10 +11,10 @@ ISR(TIMER0_COMPA_vect) {
 }
 
 int main() {
-	TCCR0A |= (2<<WGM00);
-	TCCR0B |= (3<<CS00);
+	TCCR0A = (2<<WGM00);
+	TCCR0B = (3<<CS00);
 	OCR0A = 249;
-	TIMSK0 |= (1<<OCIE0A);
+	TIMSK0 = (1<<OCIE0A);
 	DDRB |= (1<<5);
 
 	sei();
