@@ -1,7 +1,6 @@
 #include <avr/interrupt.h>
 #include <avr/io.h>
 
-
 ISR(TIMER0_COMPA_vect) {
 	static int i = 0;
 	++i;

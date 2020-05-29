@@ -1,5 +1,17 @@
 cmake_minimum_required(VERSION 3.16)
 
+# cppcheck
+add_custom_target(
+	cppcheck
+	ALL
+	COMMAND cppcheck
+	${CMAKE_SOURCE_DIR}/app
+	${CMAKE_SOURCE_DIR}/lib
+	--enable=all
+	--std=c++17
+	--output-file=${CMAKE_SOURCE_DIR}/analyse/cppcheck.txt
+)
+
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR avr)
 set(CMAKE_CROSSCOMPILING 1)
@@ -33,7 +45,7 @@ set(
 	WARNING_ERROR_FLAGS
 	"-Wall"
 	"-Wextra"
-	"-Werror"
+	# "-Werror"
 )
 
 set(
