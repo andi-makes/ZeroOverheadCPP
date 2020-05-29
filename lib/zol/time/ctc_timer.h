@@ -46,9 +46,10 @@ public:
 									  : number==1 ? &TIMSK1 : &TIMSK2)} { }
 };
 
-#define ctc_timer0 CTC_Timer<uint8_t, 0>{}
-#define ctc_timer1 CTC_Timer<uint16_t, 1>{}
-#define ctc_timer2 CTC_Timer<uint8_t, 2>{}
+// clang-format off
+#define ctc_timer0 			CTC_Timer<uint8_t, 0>{}
+#define ctc_timer1 			CTC_Timer<uint16_t, 1>{}
+#define ctc_timer2 			CTC_Timer<uint8_t, 2>{}
 
 #define ctc_timer0_100us    ctc_timer0.setup(3, 24)
 #define ctc_timer0_500us    ctc_timer0.setup(3, 124)
@@ -68,6 +69,6 @@ public:
 #define ctc_timer2_2ms      ctc_timer2.setup(4, 124)
 #define ctc_timer2_4ms      ctc_timer2.setup(4, 249)
 
-#define ctc_timer0_isr TIMER0_COMPA_vect
-#define ctc_timer1_isr TIMER1_COMPA_vect
-#define ctc_timer2_isr TIMER2_COMPA_vect
+#define ctc_timer0_isr 		TIMER0_COMPA_vect
+#define ctc_timer1_isr 		TIMER1_COMPA_vect
+#define ctc_timer2_isr 		TIMER2_COMPA_vect
