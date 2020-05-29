@@ -1,7 +1,7 @@
 #pragma once
 
-#include "io/digitalPin.h"
-#include "zol/timer/timer.h"
+#include "io/digital.h"
+#include "zol/time/timer.h"
 #include "util/register.h"
 
 #include <avr/interrupt.h>

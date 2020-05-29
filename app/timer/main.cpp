@@ -3,7 +3,6 @@
 
 #include "zol/zol.h"
 
-
 void setup() {
 	// initializes timer0 to provide a 1ms timer interrupt
 	ctc_timer0_1ms;
