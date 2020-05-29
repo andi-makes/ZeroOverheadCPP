@@ -68,6 +68,8 @@ add_link_options(
 	"-Wl,--end-group"
 )
 
+add_subdirectory(lib)
+
 function(add_avr_executable EXECUTABLE_NAME)
 	set(BIN_FOLDER ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${EXECUTABLE_NAME})
 	add_executable(
@@ -79,6 +81,11 @@ function(add_avr_executable EXECUTABLE_NAME)
 		${EXECUTABLE_NAME}.elf
 		PRIVATE
 		"-Wl,-Map,${BIN_FOLDER}.map"
+	)
+
+	target_link_libraries(
+		${EXECUTABLE_NAME}.elf
+		zol
 	)
 
 	add_custom_command(
@@ -117,8 +124,4 @@ function(add_avr_executable EXECUTABLE_NAME)
 	)
 endfunction(add_avr_executable)
 
-
-include_directories(lib)
-
-add_subdirectory(lib)
 add_subdirectory(app)

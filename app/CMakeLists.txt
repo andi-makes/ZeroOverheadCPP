@@ -18,6 +18,6 @@ add_avr_executable(
 )
 
 add_avr_executable(
-	zol
+	zol_elf
 	zol/main.cpp
 )
