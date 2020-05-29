@@ -1,5 +1,7 @@
+#include "zol.h"
+
 #include <util/delay.h>
-#include <zol/zol.h>
+
 
 void setup() {
 	Register<uint8_t>{ DDRB }.set_bit(5);

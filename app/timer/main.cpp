@@ -1,4 +1,4 @@
-#include "zol/zol.h"
+#include "zol.h"
 
 ISR(TIMER0_COMPA_vect) {
 	static int i = 0;

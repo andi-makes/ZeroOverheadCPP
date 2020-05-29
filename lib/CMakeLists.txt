@@ -6,5 +6,5 @@ add_library(
 target_include_directories(
     zol
     PUBLIC
-    .
+    zol
 )

@@ -4,13 +4,13 @@ Archive member included to satisfy reference by file (symbol)
 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
                               c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o (exit)
 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_clear_bss.o)
-                              C:\Users\andre\AppData\Local\Temp\timer.elf.RMSkGG.ltrans0.ltrans.o (__do_clear_bss)
+                              C:\Users\andre\AppData\Local\Temp\timer.elf.nHVGNv.ltrans0.ltrans.o (__do_clear_bss)
 
 Discarded input sections
 
  .data          0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o
  .bss           0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o
- .data          0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\timer.elf.RMSkGG.ltrans0.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\timer.elf.nHVGNv.ltrans0.ltrans.o
  .text          0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
  .data          0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
  .bss           0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
@@ -62,7 +62,7 @@ Address of section .data set to 0x800100
 LOAD c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o
 START GROUP
 END GROUP
-LOAD C:\Users\andre\AppData\Local\Temp\timer.elf.RMSkGG.ltrans0.ltrans.o
+LOAD C:\Users\andre\AppData\Local\Temp\timer.elf.nHVGNv.ltrans0.ltrans.o
 LOAD ../lib/libzol.a
 LOAD c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a
 LOAD c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5\libm.a
@@ -250,11 +250,11 @@ END GROUP
                 0x000000000000008c                __vector_16
                 0x000000000000008c                __vector_18
                 0x000000000000008c                __vector_20
- .text          0x0000000000000090       0x42 C:\Users\andre\AppData\Local\Temp\timer.elf.RMSkGG.ltrans0.ltrans.o
+ .text          0x0000000000000090       0x42 C:\Users\andre\AppData\Local\Temp\timer.elf.nHVGNv.ltrans0.ltrans.o
                 0x0000000000000090                __vector_14
                 0x00000000000000d2                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x00000000000000d2       0x16 C:\Users\andre\AppData\Local\Temp\timer.elf.RMSkGG.ltrans0.ltrans.o
+ .text.startup  0x00000000000000d2       0x16 C:\Users\andre\AppData\Local\Temp\timer.elf.nHVGNv.ltrans0.ltrans.o
                 0x00000000000000d2                main
                 0x00000000000000e8                . = ALIGN (0x2)
  *(.fini9)
@@ -304,7 +304,7 @@ END GROUP
 .bss            0x0000000000800100        0x2
                 0x0000000000800100                PROVIDE (__bss_start = .)
  *(.bss)
- .bss           0x0000000000800100        0x2 C:\Users\andre\AppData\Local\Temp\timer.elf.RMSkGG.ltrans0.ltrans.o
+ .bss           0x0000000000800100        0x2 C:\Users\andre\AppData\Local\Temp\timer.elf.nHVGNv.ltrans0.ltrans.o
  *(.bss*)
  *(COMMON)
                 0x0000000000800102                PROVIDE (__bss_end = .)
@@ -354,7 +354,7 @@ END GROUP
 
 .comment        0x0000000000000000       0x11
  *(.comment)
- .comment       0x0000000000000000       0x11 C:\Users\andre\AppData\Local\Temp\timer.elf.RMSkGG.ltrans0.ltrans.o
+ .comment       0x0000000000000000       0x11 C:\Users\andre\AppData\Local\Temp\timer.elf.nHVGNv.ltrans0.ltrans.o
                                          0x12 (size before relaxing)
 
 .note.gnu.avr.deviceinfo

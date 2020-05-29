@@ -1,7 +1,6 @@
-#include "zol/zol.h"
+#include "zol.h"
 
 #include <util/delay.h>
-
 
 void setup() {
 	digitalPin13.output();
