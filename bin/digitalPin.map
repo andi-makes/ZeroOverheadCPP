@@ -7,9 +7,9 @@ Discarded input sections
 
  .data          0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o
  .bss           0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o
- .text          0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.nITHYw.ltrans0.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.nITHYw.ltrans0.ltrans.o
- .bss           0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.nITHYw.ltrans0.ltrans.o
+ .text          0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.Z51SuL.ltrans0.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.Z51SuL.ltrans0.ltrans.o
+ .bss           0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.Z51SuL.ltrans0.ltrans.o
  .text          0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
  .data          0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
  .bss           0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
@@ -45,7 +45,7 @@ Address of section .data set to 0x800100
 LOAD c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o
 START GROUP
 END GROUP
-LOAD C:\Users\andre\AppData\Local\Temp\digitalPin.elf.nITHYw.ltrans0.ltrans.o
+LOAD C:\Users\andre\AppData\Local\Temp\digitalPin.elf.Z51SuL.ltrans0.ltrans.o
 LOAD c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a
 LOAD c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5\libm.a
 START GROUP
@@ -152,7 +152,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000       0x9c
+.text           0x0000000000000000       0x9e
  *(.vectors)
  .vectors       0x0000000000000000       0x68 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o
                 0x0000000000000000                __vector_default
@@ -233,13 +233,13 @@ END GROUP
                 0x000000000000007c                __vector_20
                 0x0000000000000080                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x0000000000000080       0x18 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.nITHYw.ltrans0.ltrans.o
+ .text.startup  0x0000000000000080       0x1a C:\Users\andre\AppData\Local\Temp\digitalPin.elf.Z51SuL.ltrans0.ltrans.o
                 0x0000000000000080                main
-                0x0000000000000098                . = ALIGN (0x2)
+                0x000000000000009a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000000000000098        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
-                0x0000000000000098                _exit
-                0x0000000000000098                exit
+ .fini9         0x000000000000009a        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
+                0x000000000000009a                _exit
+                0x000000000000009a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -258,17 +258,17 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000000000000098        0x4 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x000000000000009a        0x4 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
  *(.hightext)
  *(.hightext*)
  *(.progmemx.*)
-                0x000000000000009c                . = ALIGN (0x2)
+                0x000000000000009e                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
-                0x000000000000009c                _etext = .
+                0x000000000000009e                _etext = .
 
-.data           0x0000000000800100        0x0 load address 0x000000000000009c
+.data           0x0000000000800100        0x0 load address 0x000000000000009e
                 [!provide]                        PROVIDE (__data_start = .)
  *(.data)
  *(.data*)
@@ -286,8 +286,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 [!provide]                        PROVIDE (__bss_end = .)
-                0x000000000000009c                __data_load_start = LOADADDR (.data)
-                0x000000000000009c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000000000000009e                __data_load_start = LOADADDR (.data)
+                0x000000000000009e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0000000000800100        0x0
                 [!provide]                        PROVIDE (__noinit_start = .)
@@ -332,7 +332,7 @@ END GROUP
 
 .comment        0x0000000000000000       0x11
  *(.comment)
- .comment       0x0000000000000000       0x11 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.nITHYw.ltrans0.ltrans.o
+ .comment       0x0000000000000000       0x11 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.Z51SuL.ltrans0.ltrans.o
                                          0x12 (size before relaxing)
 
 .note.gnu.avr.deviceinfo
