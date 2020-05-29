@@ -1,6 +1,7 @@
 Archive member included to satisfy reference by file (symbol)
 
-../lib/libzol.a(zol.cpp.obj)  c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o (main)
+../../lib/libzol.a(zol.cpp.obj)
+                              c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o (main)
 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
                               c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o (exit)
 
@@ -8,9 +9,9 @@ Discarded input sections
 
  .data          0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o
  .bss           0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o
- .text          0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.TXWFDe.ltrans0.ltrans.o
- .data          0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.TXWFDe.ltrans0.ltrans.o
- .bss           0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.TXWFDe.ltrans0.ltrans.o
+ .text          0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.w6TbtA.ltrans0.ltrans.o
+ .data          0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.w6TbtA.ltrans0.ltrans.o
+ .bss           0x0000000000000000        0x0 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.w6TbtA.ltrans0.ltrans.o
  .text          0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
  .data          0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
  .bss           0x0000000000000000        0x0 c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a(_exit.o)
@@ -46,8 +47,8 @@ Address of section .data set to 0x800100
 LOAD c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5/crtatmega328p.o
 START GROUP
 END GROUP
-LOAD C:\Users\andre\AppData\Local\Temp\digitalPin.elf.TXWFDe.ltrans0.ltrans.o
-LOAD ../lib/libzol.a
+LOAD C:\Users\andre\AppData\Local\Temp\digitalPin.elf.w6TbtA.ltrans0.ltrans.o
+LOAD ../../lib/libzol.a
 LOAD c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/avr5\libgcc.a
 LOAD c:/tools/avr-gcc-9.2.0-x64-mingw/bin/../lib/gcc/avr/9.2.0/../../../../avr/lib/avr5\libm.a
 START GROUP
@@ -235,7 +236,7 @@ END GROUP
                 0x000000000000007c                __vector_20
                 0x0000000000000080                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x0000000000000080       0x1a C:\Users\andre\AppData\Local\Temp\digitalPin.elf.TXWFDe.ltrans0.ltrans.o
+ .text.startup  0x0000000000000080       0x1a C:\Users\andre\AppData\Local\Temp\digitalPin.elf.w6TbtA.ltrans0.ltrans.o
                 0x0000000000000080                main
                 0x000000000000009a                . = ALIGN (0x2)
  *(.fini9)
@@ -334,7 +335,7 @@ END GROUP
 
 .comment        0x0000000000000000       0x11
  *(.comment)
- .comment       0x0000000000000000       0x11 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.TXWFDe.ltrans0.ltrans.o
+ .comment       0x0000000000000000       0x11 C:\Users\andre\AppData\Local\Temp\digitalPin.elf.w6TbtA.ltrans0.ltrans.o
                                          0x12 (size before relaxing)
 
 .note.gnu.avr.deviceinfo
@@ -417,5 +418,5 @@ END GROUP
 
 .debug_addr
  *(.debug_addr)
-OUTPUT(../../bin/digitalPin.elf elf32-avr)
+OUTPUT(../../../bin/digitalPin.elf elf32-avr)
 LOAD linker stubs

@@ -83,11 +83,6 @@ function(add_avr_executable EXECUTABLE_NAME)
 		"-Wl,-Map,${BIN_FOLDER}.map"
 	)
 
-	target_link_libraries(
-		${EXECUTABLE_NAME}.elf
-		zol
-	)
-
 	add_custom_command(
 		OUTPUT ${EXECUTABLE_NAME}.hex
 		COMMAND
@@ -123,5 +118,18 @@ function(add_avr_executable EXECUTABLE_NAME)
 		ADDITIONAL_MAKE_CLEAN_FILES "${clean_files};${BIN_FOLDER}.map;${BIN_FOLDER}.hex;${BIN_FOLDER}.lss"
 	)
 endfunction(add_avr_executable)
+
+function(add_zol_executable EXECUTABLE_NAME)
+	add_avr_executable(
+		${EXECUTABLE_NAME}
+		${ARGN}
+	)
+	
+	target_link_libraries(
+		${EXECUTABLE_NAME}.elf
+		zol
+	)
+endfunction(add_zol_executable)
+
 
 add_subdirectory(app)
