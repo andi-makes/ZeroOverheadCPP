@@ -8,7 +8,7 @@ Exploring the concept of Zero Overhead C++ in Microcontrollers.
 
 ## Folder Structure
  * `app`: The program files implementing some kind of blink program
- * `bin`: The resulting binary files. I only commit the `.lss` and `.map` files, not the `.elf` nor the `.hex` files.
+ * `bin`: The resulting binary files. I only commit the `.lss` files, not the `.elf` nor the `.hex` nor the `.map` files.
  * `build`: See *Building*
  * `lib`: The zero overhead library
 
