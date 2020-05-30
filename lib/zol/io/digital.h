@@ -1,47 +1,40 @@
 #pragma once
+#include "../util/register.h"
+
 #include <avr/io.h>
 #include <inttypes.h>
 
+template<int address, int bit_number>
 class DigitalPin {
 private:
-	const uint8_t BIT_NUMBER;
-	volatile uint8_t& PORT;
-	volatile uint8_t& DDR;
-	volatile uint8_t& PIN;
-
 public:
+	using PORT = Register<uint8_t, address>;
+	using DDR  = Register<uint8_t, address - 1>;
+	using PIN  = Register<uint8_t, address - 2>;
+
 	// Defining a Pin as:
-	inline void output() { DDR |= (1 << BIT_NUMBER); }
+	inline void output() { DDR::set_bit(bit_number); }
 
 	inline void input() {
-		DDR &= ~(1 << BIT_NUMBER);
-		PORT &= ~(1 << BIT_NUMBER);
+		DDR::clear_bit(bit_number);
+		PORT::clear_bit(bit_number);
 	}
 
 	inline void pull_up() {
-		DDR &= ~(1 << BIT_NUMBER);
-		PORT |= (1 << BIT_NUMBER);
+		DDR::clear_bit(bit_number);
+		PORT::set_bit(bit_number);
 	}
 
 	// Setting a Pin:
-	inline void high() { PORT |= (1 << BIT_NUMBER); }
-	inline void low() { PORT &= ~(1 << BIT_NUMBER); }
-	inline void toggle() { PIN |= (1 << BIT_NUMBER); }
+	inline void high() { PORT::set_bit(bit_number); }
+	inline void low() { PORT::clear_bit(bit_number); }
+	inline void toggle() { PIN::set_bit(bit_number); }
 
 	// Read:
-	inline bool is_high() const { return (PIN & (1 << BIT_NUMBER)); }
-	inline bool is_low() const { return !(PIN & (1 << BIT_NUMBER)); }
+	inline bool is_high() const { return PIN::get_bit(bit_number); }
+	inline bool is_low() const { return !PIN::get_bit(bit_number); }
 
-	// Getting Pin Information
-	inline volatile uint8_t& get_port() { return PORT; }
-	inline volatile uint8_t& get_ddr() { return DDR; }
-	inline volatile uint8_t& get_pin() { return PIN; }
-	inline uint8_t get_bit_number() const { return BIT_NUMBER; }
-
-	DigitalPin(volatile uint8_t& port, uint8_t bit_number) :
-		BIT_NUMBER{ bit_number }, PORT{ *(volatile uint8_t*) (&port) },
-		DDR{ *(volatile uint8_t*) (&port - 1) },	// TODO: Fix Pin Alignment
-		PIN{ *(volatile uint8_t*) (&port - 2) } {}
+	DigitalPin() {}
 };
 
 // clang-format off
@@ -58,7 +51,7 @@ public:
 #define digitalPin10 	DigitalPin{ PORTB, 2 }
 #define digitalPin11 	DigitalPin{ PORTB, 3 }
 #define digitalPin12 	DigitalPin{ PORTB, 4 }
-#define digitalPin13 	DigitalPin{ PORTB, 5 }
+#define digitalPin13 	DigitalPin<0x25, 5>{}
 
 #define digitalPinA0 	DigitalPin{ PORTC, 0 }
 #define digitalPinA1 	DigitalPin{ PORTC, 1 }
