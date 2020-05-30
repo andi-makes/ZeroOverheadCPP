@@ -28,7 +28,7 @@ You'll find the compiled output files in the `bin` folder.
 ## Goals
 Provide similar functionality to the `Arduino` Libraries. Have a nice API. Be as fast as `C`.
 
-## Todos:
+## ToDos:
 Basically, the headings from the [Arduino Reference](https://www.arduino.cc/reference/en).
  * [X] Digital I/O
  * [ ] Analog I/O
