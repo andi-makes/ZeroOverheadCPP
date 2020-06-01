@@ -11,7 +11,7 @@ ISR(TIMER0_COMPA_vect) {
 
 void setup() {
 	// initializes timer0 to provide a 1ms timer interrupt
-	ctc_timer0_1ms;
+	zol::ctc_timer0::setup(3, 249);
 	digitalPin13::output();
 }
 

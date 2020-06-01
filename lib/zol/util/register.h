@@ -58,6 +58,8 @@ public:
 		*reinterpret_cast<volatile type*>(address) ^= bitmask;
 	}
 
+	constexpr static int get_address() { return address; }
+
 private:
 	Register();
 };
