@@ -2,7 +2,7 @@
 #include <avr/io.h>
 #include <inttypes.h>
 
-volatile int32_t millis = 0;
+static volatile int32_t millis = 0;
 
 ISR(TIMER0_COMPA_vect) {
 	millis += 1;

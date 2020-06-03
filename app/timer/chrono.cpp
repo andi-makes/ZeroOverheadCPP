@@ -23,7 +23,7 @@ void setup() {
 
 	sei();
 
-	static time_t timestamp =
+	/*static*/ time_t timestamp =
 		get_millis();	 // static variables introduce an overhead of roughly 70
 						 // Bytes in this case
 	while (true) {
