@@ -4,4 +4,7 @@
 build
 bin/*.elf
 bin/*.hex
+bin/*.map
 */*/.gitignore
+analyse
+wiki

@@ -1,5 +1,10 @@
 add_library(
-        zol_lib
-        STATIC
-        zol/zol.cpp
+    zol
+    zol/zol.cpp
+)
+
+target_include_directories(
+    zol
+    PUBLIC
+    zol
 )

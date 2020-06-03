@@ -1,12 +1,12 @@
-#include "zol/zol.h"
+#include "zol.h"
 
 #include <util/delay.h>
 
-int main() {
-  Register<uint8_t>{DDRB}.set_bit(5);
+void setup() {
+	Register<uint8_t, 0x24>::set_bit(5);
+}
 
-  while (true) {
-    Register<uint8_t>{PINB}.set_bit(5);
-    _delay_ms(500);
-  }
+void loop() {
+	Register<uint8_t, 0x23>::set_bit(5);
+	_delay_ms(500);
 }

@@ -2,16 +2,38 @@
 Exploring the concept of Zero Overhead C++ in Microcontrollers.
 
 ## Setup
- * [PlatformIO with Visual Studio Code](https://platformio.org/install/ide?install=vscode)
- * Arduino UNO
+ * [cmake](https://cmake.org/download/)
+ * [avr-gcc 9.2.0](https://blog.zakkemble.net/avr-gcc-builds/)
+ * [Arduino UNO](https://store.arduino.cc/arduino-uno-rev3)
 
 ## Folder Structure
-There will be a folder for each topic I'll develop a Zero Overhead Library (`ZOL`) for. In there, I'll create two PlatformIO Project:
- * A plain `C` one: Just plain old Register Manipulating with lots of comments. This will be the reference for "Zero Overhead".
- * A `C++` one: Here I will try to add some syntax sugar to the `C` version using classes. I will compare the flash and RAM size of the program to the `C` program.
- * Maybe a Program using the Arduino Library.
-
-At the root of each folder I'll put a `README.md` file, where I discuss my findings while developing the Zero Overhead Library. There will also be a resume at the end, discussing my final findings.
+ * `app`: The program files implementing some kind of blink program
+ * `bin`: The resulting binary files. I only commit the `.lss` files, not the `.elf` nor the `.hex` nor the `.map` files.
+ * `build`: See *Building*
+ * `lib`: The zero overhead library
 
 ## Basic Concept of `ZOL`
-The basic concept is, that the compiler produces the same Assembler Code for the `C` and the `C++` program. This is possible through compile-time optimizations such as function inlining.
+The basic concept is that the compiler produces the same Assembler Code for the `C` and the `C++` program.
+
+## Building
+Please execute the following commands:
+```shell script
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+You'll find the compiled output files in the `bin` folder.
+
+## Goals
+Provide similar functionality to the `Arduino` Libraries. Have a nice API. Be as fast as `C`.
+
+## ToDos:
+Basically, the headings from the [Arduino Reference](https://www.arduino.cc/reference/en).
+ * [X] Digital I/O
+ * [ ] Analog I/O
+ * [ ] Time
+ * [ ] Math
+ * [ ] Trigonometry
+ * [ ] Random
+ * [ ] Communication
