@@ -3,6 +3,9 @@
 
 #include <inttypes.h>
 
+/// @brief Provides Port manipulation
+/// @tparam address ... Address of the PORT register
+/// @tparam bit_number ... Which bit should be manipulated
 template<int address, int bit_number>
 class DigitalPin {
 public:
@@ -11,25 +14,38 @@ public:
 	using PIN  = Register<uint8_t, address - 2>;
 
 	// Defining a Pin as:
+	/// @brief Defines the Pin as an output
 	inline static void output() { DDR::set_bit(bit_number); }
 
+	/// @brief Defines the Pin as an input
 	inline static void input() {
 		DDR::clear_bit(bit_number);
 		PORT::clear_bit(bit_number);
 	}
 
+	/// @brief Defines the Pin as an input with pull-ups enabled
 	inline static void pull_up() {
 		DDR::clear_bit(bit_number);
 		PORT::set_bit(bit_number);
 	}
 
 	// Setting a Pin:
+	/// @brief Set the Pin high
 	inline static void high() { PORT::set_bit(bit_number); }
+
+	/// @brief Set the Pin low
 	inline static void low() { PORT::clear_bit(bit_number); }
+
+	/// @brief Toggles the state of the Pin
 	inline static void toggle() { PIN::set_bit(bit_number); }
 
 	// Read:
+	/// @brief Checks whether the Pin is high or not
+	/// @return true if Pin is high
 	inline static bool is_high() { return PIN::get_bit(bit_number); }
+
+	/// @brief Checks whether the Pin is low or not
+	/// @return true if Pin is low
 	inline static bool is_low() { return !PIN::get_bit(bit_number); }
 
 private:

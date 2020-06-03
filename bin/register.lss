@@ -1,5 +1,5 @@
 
-C:/projects/zol/ZeroOverheadCPP/build/../bin/register.elf:     file format elf32-avr
+C:/projects/zol/build/../bin/register.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn

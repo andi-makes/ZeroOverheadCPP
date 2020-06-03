@@ -6,7 +6,6 @@
 
 #include <avr/interrupt.h>
 
-
 extern "C" {
 void setup();
 void loop();
