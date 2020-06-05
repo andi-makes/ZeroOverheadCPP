@@ -1,14 +1,35 @@
 #pragma once
 
-#include <assert.h>
+template<typename task_t>
+class Task {
+private:
+	const task_t task;
+
+public:
+	bool execute() const {
+		task();
+		return false;
+	}
+
+	Task(const task_t& task) : task(task) {}
+};
 
 template<typename task_t, typename condition_t>
-class Task {
-public:
+class ConditionalTask {
+private:
 	task_t task;
 	condition_t condition;
 
-	Task(task_t task, condition_t condition) :
+public:
+	bool execute() {
+		if (condition()) {
+			task();
+			return true;
+		}
+		return false;
+	}
+
+	ConditionalTask(condition_t condition, task_t task) :
 		task(task), condition(condition) {}
 };
 
@@ -20,8 +41,7 @@ bool execute() {
 
 template<typename T, typename... tasks_t>
 bool execute(T t, tasks_t... other) {
-	if (t.condition()) {
-		t.task();
+	if (t.execute()) {
 		return true;
 	}
 	return execute(other...);

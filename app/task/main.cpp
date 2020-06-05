@@ -33,12 +33,8 @@ int main() {
 		return current - timestamp > duration;
 	};
 
-	Task first{ []() {},
-				[&]() {
-					current = get_millis();
-					return false;
-				} };
-	Task t{ task, condition };
+	Task first{ [&]() { current = get_millis(); } };
+	ConditionalTask t{ condition, task };
 
 	/// Initialize HW
 	digitalPin13::output();
