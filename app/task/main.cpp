@@ -33,17 +33,17 @@ int main() {
 		return current - timestamp > duration;
 	};
 
+	Task first{ []() {},
+				[&]() {
+					current = get_millis();
+					return false;
+				} };
 	Task t{ task, condition };
-
-	void* tasks = { &t };
 
 	/// Initialize HW
 	digitalPin13::output();
 	zol::ctc_timer0::setup(3, 249);
 	sei();
 
-	while (true) {
-		current = get_millis();
-		if (t.execute()) continue;
-	}
+	TaskScheduler{ first, t };
 }

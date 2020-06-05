@@ -8,19 +8,31 @@ public:
 	task_t task;
 	condition_t condition;
 
-	bool execute() const {
-		if (condition()) {
-			task();
-			return true;
-		}
-		return false;
-	}
-
 	Task(task_t task, condition_t condition) :
 		task(task), condition(condition) {}
 };
 
-template<typename task_t>
-bool execute(task_t t) {
-	return t->execute();
+/// @brief 0th case for variadic template
+/// @return Always returns false, no task was executed
+bool execute() {
+	return false;
 }
+
+template<typename T, typename... tasks_t>
+bool execute(T t, tasks_t... other) {
+	if (t.condition()) {
+		t.task();
+		return true;
+	}
+	return execute(other...);
+}
+
+template<typename... tasks_t>
+class TaskScheduler {
+public:
+	TaskScheduler(tasks_t... tasks) {
+		while (true) {
+			execute(tasks...);
+		}
+	}
+};
