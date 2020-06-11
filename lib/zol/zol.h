@@ -11,6 +11,3 @@ void setup();
 void loop();
 int main();
 }
-
-/// Bla bla bla
-/// Neues Bla Bla.

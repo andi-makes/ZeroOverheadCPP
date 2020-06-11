@@ -1,29 +1,14 @@
 #include "io/digital.h"
 #include "time/ctc_timer.h"
 #include "util/task.h"
-
-#include <avr/interrupt.h>
-
-typedef int32_t time_t;
-
-namespace {
-	volatile time_t millis = 0;
-}
-
-ISR(TIMER0_COMPA_vect) {
-	millis += 1;
-}
-
-time_t get_millis() {
-	return millis;
-}
+#include "zol/chrono.h"
 
 int main() {
-	uint32_t timestamp = get_millis();
-	uint32_t current =
+	zol::chrono::time_t timestamp = zol::chrono::get_millis();
+	zol::chrono::time_t current =
 		0;	  // get_millis is redundant here, it will get initialized properly
 			  // as the first instruction in the while loop
-	constexpr uint32_t duration = 500;
+	constexpr zol::chrono::time_t duration = 500;
 
 	const auto task = [&]() {
 		timestamp = current;
@@ -33,12 +18,12 @@ int main() {
 		return current - timestamp > duration;
 	};
 
-	Task first{ [&]() { current = get_millis(); } };
+	Task first{ [&]() { current = zol::chrono::get_millis(); } };
 	ConditionalTask t{ condition, task };
 
 	/// Initialize HW
 	digitalPin13::output();
-	zol::ctc_timer0::setup(3, 249);
+	zol::chrono::setup();
 	sei();
 
 	TaskScheduler{ first, t };

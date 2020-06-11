@@ -1,5 +1,7 @@
 #pragma once
 
+#include "zol/chrono.h"
+
 template<typename task_t>
 class Task {
 private:
@@ -31,6 +33,26 @@ public:
 
 	ConditionalTask(condition_t condition, task_t task) :
 		task(task), condition(condition) {}
+};
+
+template<typename task_t>
+class TimedTask {
+private:
+	task_t t;
+	int32_t delta; // Make me a template as well please
+	int32_t timestamp;
+public:
+	bool execute() {
+		if (zol::chrono::get_millis() - timestamp > delta) {
+			t();
+			return true;
+		}
+		return false;
+	}
+
+	TimedTask(int32_t delta, task_t task) : t(task), delta(delta) {
+		timestamp = zol::chrono::get_millis();
+	}
 };
 
 /// @brief 0th case for variadic template
