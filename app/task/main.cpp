@@ -4,27 +4,24 @@
 #include "zol/chrono.h"
 
 int main() {
-	zol::chrono::time_t timestamp = zol::chrono::get_millis();
-	zol::chrono::time_t current =
-		0;	  // get_millis is redundant here, it will get initialized properly
-			  // as the first instruction in the while loop
-	constexpr zol::chrono::time_t duration = 500;
+	// zol::chrono::time_t delta	  = 500;
+	// zol::chrono::time_t timestamp = 0;
+	// zol::chrono::time_t current	  = 0;
 
-	const auto task = [&]() {
-		timestamp = current;
-		digitalPin13::toggle();
-	};
-	const auto condition = [&]() -> bool {
-		return current - timestamp > duration;
-	};
+	// Task toggle{ [&]() {
+	// 	current = zol::chrono::get_millis();
+	// 	if (current - timestamp > delta) {
+	// 		timestamp = current;
+	// 		digitalPin13::toggle();
+	// 	}
+	// } };
 
-	Task first{ [&]() { current = zol::chrono::get_millis(); } };
-	ConditionalTask t{ condition, task };
+	TimedTask toggle{ 500, []() { digitalPin13::toggle(); } };
 
 	/// Initialize HW
 	digitalPin13::output();
 	zol::chrono::setup();
 	sei();
 
-	TaskScheduler{ first, t };
+	TimedTaskScheduler{ toggle };
 }

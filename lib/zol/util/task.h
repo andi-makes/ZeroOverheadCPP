@@ -8,7 +8,7 @@ private:
 	const task_t task;
 
 public:
-	bool execute() const {
+	bool execute(zol::chrono::time_t current) const {
 		task();
 		return false;
 	}
@@ -23,7 +23,7 @@ private:
 	condition_t condition;
 
 public:
-	bool execute() {
+	bool execute(zol::chrono::time_t current) {
 		if (condition()) {
 			task();
 			return true;
@@ -37,44 +37,56 @@ public:
 
 template<typename task_t>
 class TimedTask {
-private:
-	task_t t;
-	int32_t delta; // Make me a template as well please
-	int32_t timestamp;
+	zol::chrono::time_t timestamp;
+	zol::chrono::time_t delta_;
+	task_t task;
+
 public:
-	bool execute() {
-		if (zol::chrono::get_millis() - timestamp > delta) {
-			t();
+	bool execute(zol::chrono::time_t current) {
+		if (current - timestamp > delta_) {
+			timestamp = current;
+			task();
 			return true;
 		}
 		return false;
 	}
 
-	TimedTask(int32_t delta, task_t task) : t(task), delta(delta) {
-		timestamp = zol::chrono::get_millis();
-	}
+	TimedTask(zol::chrono::time_t delta, task_t task) :
+		timestamp(zol::chrono::get_millis()), delta_(delta), task(task) {}
 };
 
 /// @brief 0th case for variadic template
 /// @return Always returns false, no task was executed
-bool execute() {
+bool execute(zol::chrono::time_t current) {
 	return false;
 }
 
 template<typename T, typename... tasks_t>
-bool execute(T t, tasks_t... other) {
-	if (t.execute()) {
+bool execute(zol::chrono::time_t current, T t, tasks_t... other) {
+	if (t.execute(current)) {
 		return true;
 	}
-	return execute(other...);
+	return execute(current, other...);
 }
 
 template<typename... tasks_t>
-class TaskScheduler {
+class SimpleTaskScheduler {
 public:
-	TaskScheduler(tasks_t... tasks) {
+	SimpleTaskScheduler(tasks_t... tasks) {
 		while (true) {
-			execute(tasks...);
+			execute(0, tasks...);
+		}
+	}
+};
+
+template<typename... task_ts>
+class TimedTaskScheduler {
+public:
+	TimedTaskScheduler(task_ts... tasks) {
+		zol::chrono::time_t current = 0;
+		while (true) {
+			current = zol::chrono::get_millis();
+			execute(current, tasks...);
 		}
 	}
 };

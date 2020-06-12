@@ -29,7 +29,7 @@ set(
 	WARNING_ERROR_FLAGS
 	"-Wall"
 	"-Wextra"
-	"-Werror"
+	# "-Werror"
 )
 
 set(

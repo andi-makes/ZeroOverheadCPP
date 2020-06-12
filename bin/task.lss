@@ -3,25 +3,25 @@ C:/projects/zol/build/../bin/task.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  000001a0  2**0
+  0 .data         00000000  00800100  00800100  00000198  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000012c  00000000  00000000  00000074  2**1
+  1 .text         00000124  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000004  00800100  00800100  000001a0  2**0
+  2 .bss          00000004  00800100  00800100  00000198  2**0
                   ALLOC
-  3 .comment      00000011  00000000  00000000  000001a0  2**0
+  3 .comment      00000011  00000000  00000000  00000198  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001b4  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001ac  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000040  00000000  00000000  000001f8  2**3
+  5 .debug_aranges 00000040  00000000  00000000  000001f0  2**3
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000640  00000000  00000000  00000238  2**0
+  6 .debug_info   00000640  00000000  00000000  00000230  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000005ca  00000000  00000000  00000878  2**0
+  7 .debug_abbrev 000005ca  00000000  00000000  00000870  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000103  00000000  00000000  00000e42  2**0
+  8 .debug_line   00000103  00000000  00000000  00000e3a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000026d  00000000  00000000  00000f45  2**0
+  9 .debug_str    0000026d  00000000  00000000  00000f3d  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -76,7 +76,7 @@ Disassembly of section .text:
   80:	b2 07       	cpc	r27, r18
   82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
   84:	0e 94 6b 00 	call	0xd6	; 0xd6 <main>
-  88:	0c 94 94 00 	jmp	0x128	; 0x128 <_exit>
+  88:	0c 94 90 00 	jmp	0x120	; 0x120 <_exit>
 
 0000008c <__bad_interrupt>:
   8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -111,41 +111,37 @@ Disassembly of section .text:
   d4:	18 95       	reti
 
 000000d6 <main>:
-  d6:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
-  da:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
-  de:	a0 91 02 01 	lds	r26, 0x0102	; 0x800102 <_edata+0x2>
-  e2:	b0 91 03 01 	lds	r27, 0x0103	; 0x800103 <_edata+0x3>
+  d6:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_edata>
+  da:	50 91 01 01 	lds	r21, 0x0101	; 0x800101 <_edata+0x1>
+  de:	60 91 02 01 	lds	r22, 0x0102	; 0x800102 <_edata+0x2>
+  e2:	70 91 03 01 	lds	r23, 0x0103	; 0x800103 <_edata+0x3>
   e6:	25 9a       	sbi	0x04, 5	; 4
-  e8:	22 e0       	ldi	r18, 0x02	; 2
-  ea:	24 bd       	out	0x24, r18	; 36
-  ec:	33 e0       	ldi	r19, 0x03	; 3
-  ee:	35 bd       	out	0x25, r19	; 37
-  f0:	39 ef       	ldi	r19, 0xF9	; 249
-  f2:	37 bd       	out	0x27, r19	; 39
-  f4:	20 93 6e 00 	sts	0x006E, r18	; 0x80006e <__TEXT_REGION_LENGTH__+0x7e006e>
+  e8:	82 e0       	ldi	r24, 0x02	; 2
+  ea:	84 bd       	out	0x24, r24	; 36
+  ec:	93 e0       	ldi	r25, 0x03	; 3
+  ee:	95 bd       	out	0x25, r25	; 37
+  f0:	99 ef       	ldi	r25, 0xF9	; 249
+  f2:	97 bd       	out	0x27, r25	; 39
+  f4:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7e006e>
   f8:	78 94       	sei
-  fa:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_edata>
-  fe:	50 91 01 01 	lds	r21, 0x0101	; 0x800101 <_edata+0x1>
- 102:	60 91 02 01 	lds	r22, 0x0102	; 0x800102 <_edata+0x2>
- 106:	70 91 03 01 	lds	r23, 0x0103	; 0x800103 <_edata+0x3>
- 10a:	8a 01       	movw	r16, r20
- 10c:	9b 01       	movw	r18, r22
- 10e:	08 1b       	sub	r16, r24
- 110:	19 0b       	sbc	r17, r25
- 112:	2a 0b       	sbc	r18, r26
- 114:	3b 0b       	sbc	r19, r27
- 116:	05 3f       	cpi	r16, 0xF5	; 245
- 118:	11 40       	sbci	r17, 0x01	; 1
- 11a:	21 05       	cpc	r18, r1
- 11c:	31 05       	cpc	r19, r1
- 11e:	68 f3       	brcs	.-38     	; 0xfa <main+0x24>
- 120:	1d 9a       	sbi	0x03, 5	; 3
- 122:	db 01       	movw	r26, r22
- 124:	ca 01       	movw	r24, r20
- 126:	e9 cf       	rjmp	.-46     	; 0xfa <main+0x24>
+  fa:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+  fe:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 102:	a0 91 02 01 	lds	r26, 0x0102	; 0x800102 <_edata+0x2>
+ 106:	b0 91 03 01 	lds	r27, 0x0103	; 0x800103 <_edata+0x3>
+ 10a:	84 1b       	sub	r24, r20
+ 10c:	95 0b       	sbc	r25, r21
+ 10e:	a6 0b       	sbc	r26, r22
+ 110:	b7 0b       	sbc	r27, r23
+ 112:	85 3f       	cpi	r24, 0xF5	; 245
+ 114:	91 40       	sbci	r25, 0x01	; 1
+ 116:	a1 05       	cpc	r26, r1
+ 118:	b1 05       	cpc	r27, r1
+ 11a:	78 f3       	brcs	.-34     	; 0xfa <main+0x24>
+ 11c:	1d 9a       	sbi	0x03, 5	; 3
+ 11e:	ed cf       	rjmp	.-38     	; 0xfa <main+0x24>
 
-00000128 <_exit>:
- 128:	f8 94       	cli
+00000120 <_exit>:
+ 120:	f8 94       	cli
 
-0000012a <__stop_program>:
- 12a:	ff cf       	rjmp	.-2      	; 0x12a <__stop_program>
+00000122 <__stop_program>:
+ 122:	ff cf       	rjmp	.-2      	; 0x122 <__stop_program>
