@@ -37,12 +37,23 @@ public:
 
 template<typename task_t>
 class TimedTask {
-	zol::chrono::time_t timestamp;
 	zol::chrono::time_t delta_;
 	task_t task;
+	// zol::chrono::time_t timestamp;
+
+	/// The story why I cannot make timestamp a private member variable:
+	/// Well, the compiler simply does not want to compile `timestamp = current`
+	/// in the if statement in execute. If I make the timestamp a static
+	/// variable inside that function, it does work however. Making the variable
+	/// static has the drawback that when using few TimedTasks the timestamp
+	/// does not simply get stored inside a register but in RAM. Using static
+	/// variables greatly impact code size and thus code speed, so I wouldn't
+	/// recommend using this type of Task. See app/custom_timed_task for further
+	/// detail.
 
 public:
 	bool execute(zol::chrono::time_t current) {
+		static zol::chrono::time_t timestamp = zol::chrono::get_millis();
 		if (current - timestamp > delta_) {
 			timestamp = current;
 			task();
@@ -51,8 +62,16 @@ public:
 		return false;
 	}
 
-	TimedTask(zol::chrono::time_t delta, task_t task) :
-		timestamp(zol::chrono::get_millis()), delta_(delta), task(task) {}
+	[[deprecated(
+		"I don't recommend using this type of Task. See "
+		"app/custom_timed_task for further detail!")]] TimedTask(zol::chrono::
+																	 time_t
+																		 delta,
+																 task_t task) :
+		delta_(delta),
+		task(task) {
+		// timestamp = zol::chrono::get_millis();
+	}
 };
 
 /// @brief 0th case for variadic template
