@@ -1,5 +1,5 @@
 
-C:/projects/zol/build/../bin/custom_timed_task.elf:     file format elf32-avr
+C:/Users/andre/projects/zol/build/../bin/custom_timed_task.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
@@ -9,20 +9,20 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .bss          00000004  00800100  00800100  00000196  2**0
                   ALLOC
-  3 .comment      00000011  00000000  00000000  00000196  2**0
+  3 .comment      00000012  00000000  00000000  00000196  2**0
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001a8  2**2
-                  CONTENTS, READONLY
+                  CONTENTS, READONLY, OCTETS
   5 .debug_aranges 00000040  00000000  00000000  000001e8  2**3
-                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
   6 .debug_info   00000640  00000000  00000000  00000228  2**0
-                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
   7 .debug_abbrev 000005ca  00000000  00000000  00000868  2**0
-                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
   8 .debug_line   00000103  00000000  00000000  00000e32  2**0
-                  CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000026d  00000000  00000000  00000f35  2**0
-                  CONTENTS, READONLY, DEBUGGING
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+  9 .debug_str    0000026a  00000000  00000000  00000f35  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
 
@@ -90,17 +90,17 @@ Disassembly of section .text:
   9a:	9f 93       	push	r25
   9c:	af 93       	push	r26
   9e:	bf 93       	push	r27
-  a0:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
-  a4:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
-  a8:	a0 91 02 01 	lds	r26, 0x0102	; 0x800102 <_edata+0x2>
-  ac:	b0 91 03 01 	lds	r27, 0x0103	; 0x800103 <_edata+0x3>
+  a0:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE>
+  a4:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x1>
+  a8:	a0 91 02 01 	lds	r26, 0x0102	; 0x800102 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x2>
+  ac:	b0 91 03 01 	lds	r27, 0x0103	; 0x800103 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x3>
   b0:	01 96       	adiw	r24, 0x01	; 1
   b2:	a1 1d       	adc	r26, r1
   b4:	b1 1d       	adc	r27, r1
-  b6:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
-  ba:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
-  be:	a0 93 02 01 	sts	0x0102, r26	; 0x800102 <_edata+0x2>
-  c2:	b0 93 03 01 	sts	0x0103, r27	; 0x800103 <_edata+0x3>
+  b6:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE>
+  ba:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x1>
+  be:	a0 93 02 01 	sts	0x0102, r26	; 0x800102 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x2>
+  c2:	b0 93 03 01 	sts	0x0103, r27	; 0x800103 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x3>
   c6:	bf 91       	pop	r27
   c8:	af 91       	pop	r26
   ca:	9f 91       	pop	r25
@@ -123,10 +123,10 @@ Disassembly of section .text:
   ea:	80 e0       	ldi	r24, 0x00	; 0
   ec:	90 e0       	ldi	r25, 0x00	; 0
   ee:	dc 01       	movw	r26, r24
-  f0:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_edata>
-  f4:	50 91 01 01 	lds	r21, 0x0101	; 0x800101 <_edata+0x1>
-  f8:	60 91 02 01 	lds	r22, 0x0102	; 0x800102 <_edata+0x2>
-  fc:	70 91 03 01 	lds	r23, 0x0103	; 0x800103 <_edata+0x3>
+  f0:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE>
+  f4:	50 91 01 01 	lds	r21, 0x0101	; 0x800101 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x1>
+  f8:	60 91 02 01 	lds	r22, 0x0102	; 0x800102 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x2>
+  fc:	70 91 03 01 	lds	r23, 0x0103	; 0x800103 <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x3>
  100:	8a 01       	movw	r16, r20
  102:	9b 01       	movw	r18, r22
  104:	08 1b       	sub	r16, r24
