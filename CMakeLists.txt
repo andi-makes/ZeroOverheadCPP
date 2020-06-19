@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 set(MCU_NAME "atmega328p")
 set(CPU_FREQ "16000000")
+set(PORT "COM4")
 
 include(cmake/avr.cmake)
 include(cmake/cppcheck.cmake)

@@ -1,49 +1,50 @@
 #include "io/digital.h"
 #include "time/ctc_timer.h"
 #include "util/task.h"
+#include "zol/chrono.h"
 
-#include <avr/interrupt.h>
-
-typedef int32_t time_t;
-
-namespace {
-	volatile time_t millis = 0;
-}
-
-ISR(TIMER0_COMPA_vect) {
-	millis += 1;
-}
-
-time_t get_millis() {
-	return millis;
+template<typename task_t>
+void local_execute(zol::chrono::time_t current, TimedTask<task_t> t) {
+	t.execute(current);
 }
 
 int main() {
-	uint32_t timestamp = get_millis();
-	uint32_t current =
-		0;	  // get_millis is redundant here, it will get initialized properly
-			  // as the first instruction in the while loop
-	constexpr uint32_t duration = 500;
+	// zol::chrono::time_t delta	  = 500;
+	// zol::chrono::time_t timestamp = 0;
+	// zol::chrono::time_t current	  = 0;
 
-	const auto task = [&]() {
-		timestamp = current;
-		digitalPin13::toggle();
-	};
-	const auto condition = [&]() -> bool {
-		return current - timestamp > duration;
-	};
+	// Task toggle{ [&]() {
+	// 	current = zol::chrono::get_millis();
+	// 	if (current - timestamp > delta) {
+	// 		timestamp = current;
+	// 		digitalPin13::toggle();
+	// 	}
+	// } };
 
-	Task t{ task, condition };
-
-	void* tasks = { &t };
+	TimedTask toggle{ 500, []() { digitalPin13::toggle(); } };
 
 	/// Initialize HW
 	digitalPin13::output();
-	zol::ctc_timer0::setup(3, 249);
+	zol::chrono::setup();
 	sei();
 
+	// Does not work
+	// TimedTaskScheduler{ toggle };
+
+	// Works
+	// while (true) {
+	// 	zol::chrono::time_t current = zol::chrono::get_millis();
+	// 	toggle.execute(current);
+	// }
+
+	// Does not work
+	// while (true) {
+	// 	zol::chrono::time_t current = zol::chrono::get_millis();
+	// 	execute(current, toggle);
+	// }
+
 	while (true) {
-		current = get_millis();
-		if (t.execute()) continue;
+		zol::chrono::time_t current = zol::chrono::get_millis();
+		local_execute(current, toggle);
 	}
 }

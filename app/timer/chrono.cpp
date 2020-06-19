@@ -7,7 +7,7 @@ namespace {
 }
 
 ISR(TIMER0_COMPA_vect) {
-	millis += 1;
+	millis = millis + 1;
 }
 
 time_t get_millis() {
@@ -23,12 +23,9 @@ void setup() {
 
 	sei();
 
-	/*static*/ time_t timestamp =
-		get_millis();	 // static variables introduce an overhead of roughly 70
-						 // Bytes in this case
+	constexpr time_t delta_time = 500;
+	time_t timestamp			= get_millis();
 	while (true) {
-		static constexpr time_t delta_time = 500;
-
 		time_t current = get_millis();
 
 		if (current - timestamp > delta_time) {
