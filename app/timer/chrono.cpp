@@ -23,9 +23,7 @@ void setup() {
 
 	sei();
 
-	/*static*/ time_t timestamp =
-		get_millis();	 // static variables introduce an overhead of roughly 70
-						 // Bytes in this case
+	time_t timestamp = get_millis();
 	while (true) {
 		static constexpr time_t delta_time = 500;
 
