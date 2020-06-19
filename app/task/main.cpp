@@ -3,6 +3,11 @@
 #include "util/task.h"
 #include "zol/chrono.h"
 
+template<typename task_t>
+void local_execute(zol::chrono::time_t current, TimedTask<task_t> t) {
+	t.execute(current);
+}
+
 int main() {
 	// zol::chrono::time_t delta	  = 500;
 	// zol::chrono::time_t timestamp = 0;
@@ -23,5 +28,23 @@ int main() {
 	zol::chrono::setup();
 	sei();
 
-	TimedTaskScheduler{ toggle };
+	// Does not work
+	// TimedTaskScheduler{ toggle };
+
+	// Works
+	// while (true) {
+	// 	zol::chrono::time_t current = zol::chrono::get_millis();
+	// 	toggle.execute(current);
+	// }
+
+	// Does not work
+	// while (true) {
+	// 	zol::chrono::time_t current = zol::chrono::get_millis();
+	// 	execute(current, toggle);
+	// }
+
+	while (true) {
+		zol::chrono::time_t current = zol::chrono::get_millis();
+		local_execute(current, toggle);
+	}
 }

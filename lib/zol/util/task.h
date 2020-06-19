@@ -8,7 +8,9 @@ private:
 	const task_t task;
 
 public:
-	bool execute(zol::chrono::time_t current) const {
+	static constexpr bool needsTime = false;
+
+	bool execute() const {
 		task();
 		return false;
 	}
@@ -23,7 +25,8 @@ private:
 	condition_t condition;
 
 public:
-	bool execute(zol::chrono::time_t current) {
+	static constexpr bool needsTime = false;
+	bool execute() {
 		if (condition()) {
 			task();
 			return true;
@@ -37,8 +40,8 @@ public:
 
 template<typename task_t>
 class TimedTask {
-	zol::chrono::time_t delta_;
-	task_t task;
+	const zol::chrono::time_t delta;
+	const task_t task;
 	// zol::chrono::time_t timestamp;
 
 	/// The story why I cannot make timestamp a private member variable:
@@ -52,9 +55,12 @@ class TimedTask {
 	/// detail.
 
 public:
-	bool execute(zol::chrono::time_t current) {
+	static constexpr bool needsTime = true;
+
+	bool execute(const zol::chrono::time_t current) {
 		static zol::chrono::time_t timestamp = zol::chrono::get_millis();
-		if (current - timestamp > delta_) {
+		const zol::chrono::time_t deltaTime	 = current - timestamp;
+		if (deltaTime > delta) {
 			timestamp = current;
 			task();
 			return true;
@@ -62,30 +68,43 @@ public:
 		return false;
 	}
 
-	[[deprecated(
-		"I don't recommend using this type of Task. See "
-		"app/custom_timed_task for further detail!")]] TimedTask(zol::chrono::
-																	 time_t
-																		 delta,
-																 task_t task) :
-		delta_(delta),
-		task(task) {
+	TimedTask(zol::chrono::time_t delta, task_t task) :
+		delta(delta), task(task) {
 		// timestamp = zol::chrono::get_millis();
 	}
 };
 
 /// @brief 0th case for variadic template
+/// @param current ... current time, unused in this case
 /// @return Always returns false, no task was executed
-bool execute(zol::chrono::time_t current) {
+bool execute(__attribute__((unused)) zol::chrono::time_t current) {
 	return false;
 }
 
 template<typename T, typename... tasks_t>
 bool execute(zol::chrono::time_t current, T t, tasks_t... other) {
-	if (t.execute(current)) {
-		return true;
+	if constexpr (t.needsTime) {
+		if (t.execute(current)) {
+			return true;
+		}
+	} else {
+		if (t.execute()) {
+			return true;
+		}
 	}
 	return execute(current, other...);
+}
+
+bool execute() {
+	return false;
+}
+
+template<typename T, typename... tasks_t>
+bool execute(T t, tasks_t... other) {
+	if (t.execute()) {
+		return true;
+	}
+	return execute(other...);
 }
 
 template<typename... tasks_t>
@@ -93,7 +112,7 @@ class SimpleTaskScheduler {
 public:
 	SimpleTaskScheduler(tasks_t... tasks) {
 		while (true) {
-			execute(0, tasks...);
+			execute(tasks...);
 		}
 	}
 };

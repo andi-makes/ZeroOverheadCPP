@@ -17,7 +17,8 @@ public:
 	/// @brief Sets the `bit_number`th bit in the register.
 	/// @param bit_number ... Bit to set
 	inline static void set_bit(const int bit_number) {
-		*reinterpret_cast<volatile type*>(address) |= (1 << bit_number);
+		*reinterpret_cast<volatile type*>(address) =
+			*reinterpret_cast<volatile type*>(address) | (1 << bit_number);
 	}
 
 	/// @brief Gets the `bit_number`th bit from the register.
