@@ -23,10 +23,9 @@ void setup() {
 
 	sei();
 
-	time_t timestamp = get_millis();
+	constexpr time_t delta_time = 500;
+	time_t timestamp			= get_millis();
 	while (true) {
-		static constexpr time_t delta_time = 500;
-
 		time_t current = get_millis();
 
 		if (current - timestamp > delta_time) {
