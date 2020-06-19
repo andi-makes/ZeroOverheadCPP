@@ -107,24 +107,24 @@ bool execute(T t, tasks_t... other) {
 	return execute(other...);
 }
 
-template<typename... tasks_t>
-class SimpleTaskScheduler {
+class TaskScheduler {
 public:
-	SimpleTaskScheduler(tasks_t... tasks) {
+	template<typename... tasks>
+	inline static void simple(tasks... ts) {
 		while (true) {
-			execute(tasks...);
+			execute(ts...);
 		}
 	}
-};
 
-template<typename... task_ts>
-class TimedTaskScheduler {
-public:
-	TimedTaskScheduler(task_ts... tasks) {
+	template<typename... tasks>
+	inline static void timed(tasks... ts) {
 		zol::chrono::time_t current = 0;
 		while (true) {
 			current = zol::chrono::get_millis();
-			execute(current, tasks...);
+			execute(current, ts...);
 		}
 	}
+
+private:
+	TaskScheduler() {}
 };

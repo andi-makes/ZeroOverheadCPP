@@ -25,5 +25,5 @@ int main() {
 	zol::chrono::setup();
 	sei();
 
-	SimpleTaskScheduler{ toggle };
+	TaskScheduler::simple(toggle);
 }
