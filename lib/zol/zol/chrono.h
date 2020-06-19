@@ -29,5 +29,5 @@ namespace zol {
 }
 
 ISR(TIMER0_COMPA_vect) {
-	zol::chrono::millis += 1;
+	zol::chrono::millis = zol::chrono::millis + 1;
 }

@@ -7,7 +7,7 @@ namespace {
 }
 
 ISR(TIMER0_COMPA_vect) {
-	millis += 1;
+	millis = millis + 1;
 }
 
 time_t get_millis() {
