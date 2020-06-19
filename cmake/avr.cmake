@@ -51,7 +51,7 @@ add_definitions(
 
 set(
 	CMAKE_CXX_FLAGS
-	"-std=c++17 -fno-threadsafe-statics -fpermissive"
+	"-std=c++20 -fno-threadsafe-statics -fpermissive"
 )
 
 add_link_options(
@@ -102,7 +102,7 @@ function(add_avr_executable EXECUTABLE_NAME)
 
 	add_custom_target(
 		upload_${EXECUTABLE_NAME}
-		avrdude -p atmega328p -c arduino -b 115200 -D -P "COM9" -U flash:w:${BIN_FOLDER}.hex:i
+		avrdude -p atmega328p -c arduino -b 115200 -D -P ${PORT} -U flash:w:${BIN_FOLDER}.hex:i
 		DEPENDS ${EXECUTABLE_NAME}.hex
 		COMMENT "Uploading ${EXECUTABLE_NAME}.hex to atmega328p using arduino"
 	)
