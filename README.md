@@ -3,7 +3,7 @@ Exploring the concept of Zero Overhead C++ in Microcontrollers.
 
 ## Setup
  * [cmake](https://cmake.org/download/)
- * [avr-gcc 9.2.0](https://blog.zakkemble.net/avr-gcc-builds/)
+ * [avr-gcc 10.1.0](https://blog.zakkemble.net/avr-gcc-builds/)
  * [Arduino UNO](https://store.arduino.cc/arduino-uno-rev3)
 
 ## Folder Structure
