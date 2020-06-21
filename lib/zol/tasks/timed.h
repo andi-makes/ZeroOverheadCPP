@@ -2,6 +2,10 @@
 
 #include "zol/chrono.h"
 
+/// @brief This task gets executed periodically. After executing, the task queue
+/// starts over again.
+/// @tparam task_t ... Type of the task, expect function with return type void
+/// and no parameters
 template<typename task_t>
 class TimedTask {
 	const zol::chrono::time_t delta;
@@ -19,8 +23,13 @@ class TimedTask {
 	/// detail.
 
 public:
+	/// @brief This type of Task needs information about time
 	static constexpr bool needsTime = true;
 
+	/// @brief Executes the task if the time between now and the time of last
+	/// execution is greater than the duration intervall of the task
+	/// @param current ... current time
+	/// @return true if executed, otherwise false
 	bool execute(const zol::chrono::time_t& current) {
 		static zol::chrono::time_t timestamp = zol::chrono::get_millis();
 		const zol::chrono::time_t deltaTime	 = current - timestamp;
