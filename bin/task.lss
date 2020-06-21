@@ -125,22 +125,22 @@ Disassembly of section .text:
   f0:	90 91 0d 01 	lds	r25, 0x010D	; 0x80010d <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x1>
   f4:	a0 91 0e 01 	lds	r26, 0x010E	; 0x80010e <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x2>
   f8:	b0 91 0f 01 	lds	r27, 0x010F	; 0x80010f <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x3>
-  fc:	30 91 04 01 	lds	r19, 0x0104	; 0x800104 <_ZGVZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp>
+  fc:	30 91 04 01 	lds	r19, 0x0104	; 0x800104 <_ZGVZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp>
  100:	31 11       	cpse	r19, r1
  102:	12 c0       	rjmp	.+36     	; 0x128 <main+0x52>
  104:	40 91 0c 01 	lds	r20, 0x010C	; 0x80010c <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE>
  108:	50 91 0d 01 	lds	r21, 0x010D	; 0x80010d <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x1>
  10c:	60 91 0e 01 	lds	r22, 0x010E	; 0x80010e <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x2>
  110:	70 91 0f 01 	lds	r23, 0x010F	; 0x80010f <_ZN3zol10chrono_defINS_9CTC_TimerIhLi0EEEE6millisE+0x3>
- 114:	40 93 00 01 	sts	0x0100, r20	; 0x800100 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp>
- 118:	50 93 01 01 	sts	0x0101, r21	; 0x800101 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp+0x1>
- 11c:	60 93 02 01 	sts	0x0102, r22	; 0x800102 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp+0x2>
- 120:	70 93 03 01 	sts	0x0103, r23	; 0x800103 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp+0x3>
- 124:	20 93 04 01 	sts	0x0104, r18	; 0x800104 <_ZGVZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp>
- 128:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp>
- 12c:	50 91 01 01 	lds	r21, 0x0101	; 0x800101 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp+0x1>
- 130:	60 91 02 01 	lds	r22, 0x0102	; 0x800102 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp+0x2>
- 134:	70 91 03 01 	lds	r23, 0x0103	; 0x800103 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp+0x3>
+ 114:	40 93 00 01 	sts	0x0100, r20	; 0x800100 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp>
+ 118:	50 93 01 01 	sts	0x0101, r21	; 0x800101 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp+0x1>
+ 11c:	60 93 02 01 	sts	0x0102, r22	; 0x800102 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp+0x2>
+ 120:	70 93 03 01 	sts	0x0103, r23	; 0x800103 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp+0x3>
+ 124:	20 93 04 01 	sts	0x0104, r18	; 0x800104 <_ZGVZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp>
+ 128:	40 91 00 01 	lds	r20, 0x0100	; 0x800100 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp>
+ 12c:	50 91 01 01 	lds	r21, 0x0101	; 0x800101 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp+0x1>
+ 130:	60 91 02 01 	lds	r22, 0x0102	; 0x800102 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp+0x2>
+ 134:	70 91 03 01 	lds	r23, 0x0103	; 0x800103 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp+0x3>
  138:	7c 01       	movw	r14, r24
  13a:	8d 01       	movw	r16, r26
  13c:	e4 1a       	sub	r14, r20
@@ -154,10 +154,10 @@ Disassembly of section .text:
  14c:	61 05       	cpc	r22, r1
  14e:	71 05       	cpc	r23, r1
  150:	68 f2       	brcs	.-102    	; 0xec <main+0x16>
- 152:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp>
- 156:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp+0x1>
- 15a:	a0 93 02 01 	sts	0x0102, r26	; 0x800102 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp+0x2>
- 15e:	b0 93 03 01 	sts	0x0103, r27	; 0x800103 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeEmE9timestamp+0x3>
+ 152:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp>
+ 156:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp+0x1>
+ 15a:	a0 93 02 01 	sts	0x0102, r26	; 0x800102 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp+0x2>
+ 15e:	b0 93 03 01 	sts	0x0103, r27	; 0x800103 <_ZZN9TimedTaskIZ4mainEUlvE_E7executeERKmE9timestamp+0x3>
  162:	1d 9a       	sbi	0x03, 5	; 3
  164:	c3 cf       	rjmp	.-122    	; 0xec <main+0x16>
 
