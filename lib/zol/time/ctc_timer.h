@@ -19,6 +19,8 @@ namespace zol {
 			Register<uint8_t, number == 0 ? 0x6E : number == 1 ? 0x6F : 0x70>;
 
 	public:
+		static constexpr int timer_number = number;
+
 		/// @brief Initialize the Timer with a specific prescaler and compare
 		/// 	value
 		/// @param prescaler ... Prescaler to use // TODO: prescaler values

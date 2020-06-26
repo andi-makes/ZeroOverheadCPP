@@ -1,8 +1,9 @@
+#define ZOL_CHRONO_IMPL
+
 #include "io/digital.h"
 #include "tasks/task.h"
 #include "time/ctc_timer.h"
 #include "zol/chrono.h"
-
 
 template<typename task_t>
 void local_execute(zol::chrono::time_t current, TimedTask<task_t> t) {

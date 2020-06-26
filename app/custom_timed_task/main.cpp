@@ -2,11 +2,12 @@
 /// but it is 72 Bytes smaller. I cannot abstract this into a class because
 /// of a compiler bug.
 
+#define ZOL_CHRONO_IMPL
+
 #include "io/digital.h"
 #include "tasks/task.h"
 #include "time/ctc_timer.h"
 #include "zol/chrono.h"
-
 
 int main() {
 	constexpr zol::chrono::time_t delta = 500;

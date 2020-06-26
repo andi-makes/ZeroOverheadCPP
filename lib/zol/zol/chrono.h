@@ -13,7 +13,13 @@ namespace zol {
 		static volatile time_t millis;
 
 		static time_t get_millis() { return millis; }
-		static void setup() { timer_t::setup(3, 249); }
+		static void setup() {
+			if constexpr (timer_t::timer_number == 0) {
+				timer_t::setup(3, 249);
+			} else if constexpr (timer_t::timer_number == 1) {
+			} else {
+			}
+		}
 	};
 
 #if defined(CHRONO_CTC1)
@@ -28,6 +34,6 @@ namespace zol {
 	volatile chrono::time_t chrono::millis = 0;
 }
 
-ISR(TIMER0_COMPA_vect) {
-	zol::chrono::millis = zol::chrono::millis + 1;
-}
+#if defined(ZOL_CHRONO_IMPL)
+#include "./chrono.cpp"
+#endif
